@@ -169,13 +169,10 @@ cython_debug/
 **/.DS_Store
 
 # logging
-src/out_dir/**
-src/out_dir/wandb/**
-src/out_dir/logs/**
+src/results/**
+src/results/wandb/**
+src/results/logs/**
 src/configs/local/default.yaml
-out_dir/checkpoints/**
-out_dir/wandb/**
-out_dir/logs/**
-# secrets (e.g. AWS)
-_secrets.py
-src/_secrets.py
+results/checkpoints/**
+results/wandb/**
+results/logs/**
