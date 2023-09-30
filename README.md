@@ -1,4 +1,4 @@
-# DYffusion: A Dynamics-informed Diffusion Model for Spatiotemporal Forecasting
+# DYffusion: A Dynamics-informed Diffusion Model for Spatiotemporal Forecasting (NeurIPS 2023)
 **Official implementation of DYffusion. *Code coming soon!***
 
 Paper pre-print: [https://arxiv.org/abs/2306.01984](https://arxiv.org/abs/2306.01984)
