@@ -164,6 +164,9 @@ cython_debug/
 **/.idea
 
 
+# Ruff
+.ruff_cache
+
 #.DS_Store
 .DS_Store
 **/.DS_Store
@@ -176,3 +179,10 @@ src/configs/local/default.yaml
 results/checkpoints/**
 results/wandb/**
 results/logs/**
+outputs/**
+
+tmp.sh
+tmp.py
+
+# Gifs in docs/
+docs/*.gif

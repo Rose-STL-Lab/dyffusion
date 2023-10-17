@@ -1,0 +1,16 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=spring_mesh_ddpm
+
+defaults:
+  - spring_mesh.yaml
+  - override /module: forecasting_multi_horizon_at_once.yaml
+  - override /diffusion: denoising.yaml
+  - _self_
+
+name: "SpringMesh-MH${datamodule.horizon}-DDPM-${diffusion.timesteps}T"
+
+logger:
+  wandb:
+    tags: ["pb", "spring-mesh",  'DDPM']

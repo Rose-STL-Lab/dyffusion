@@ -1,0 +1,5 @@
+name: "adamw"
+lr: 7e-5
+weight_decay: 1e-6
+eps: 1e-8
+betas: [0.9, 0.99]

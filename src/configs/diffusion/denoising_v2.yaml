@@ -1,0 +1,23 @@
+defaults:
+  - _self_
+  - _base.yaml
+
+_target_: src.diffusion.ddpm.DDPM
+
+beta_schedule: "linear"
+objective: "pred_noise"   # pred_x0, pred_noise
+use_ema: False
+hardcode_betaN: False
+log_every_t: null  # 50
+
+linear_start: 0.0015   # 1e-4 (code), 0.00085 (StableDiffusion)
+linear_end: 0.0195     # 2e-2 (code), 0.0120 (StableDiffusion)
+cosine_s: 8e-3
+original_elbo_weight: 0.0
+v_posterior: 0.0
+l_simple_weight: 1.0
+use_positional_encodings: False
+learn_logvar: False
+logvar_init: 0.0
+
+

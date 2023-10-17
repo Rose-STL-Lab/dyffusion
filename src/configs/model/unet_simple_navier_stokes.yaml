@@ -1,0 +1,18 @@
+# @package _global_
+
+defaults:
+  - _base_model_config.yaml   # general, model independent, parameters
+  - _self_
+
+model:
+  _target_: src.models.unet_simple.UNet
+  dim: 64
+  outer_sample_mode: 'bilinear'  # "bilinear" or "nearest" or None (=no upsampling)
+  upsample_dims: [256, 256]     # null or a tuple of ints
+  with_time_emb: False
+  #
+  input_dropout: 0.0
+  dropout: 0.0
+
+trainer:
+  deterministic: False   # Upsampling in this model is not deterministic

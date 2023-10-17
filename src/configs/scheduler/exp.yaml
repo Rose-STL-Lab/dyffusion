@@ -1,0 +1,4 @@
+# Use with python run.py scheduler=exp.yaml
+
+_target_: torch.optim.lr_scheduler.ExponentialLR
+gamma: 0.98

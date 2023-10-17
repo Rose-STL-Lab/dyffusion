@@ -1,0 +1,26 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=oisst_pacific_interpolation
+
+defaults:
+  - oisst_pacific.yaml
+  - override /module: interpolation.yaml
+  - override /model: unet_resnet.yaml
+  - _self_
+
+name: "OISSTv2-Interpolation${datamodule.horizon}h"
+
+model:
+  block_dropout: 0.6
+  block_dropout1: 0.2
+  attn_dropout: 0.6
+
+module:
+  enable_inference_dropout: True
+  optimizer:
+    lr: 3e-4
+
+logger:
+  wandb:
+    tags: ["oisstv2", "pacific_subset", "interpolation"]

@@ -1,0 +1,33 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - _base_model_config.yaml   # general, model independent, parameters
+
+model:
+  _target_: src.models.unet.Unet
+  dim: 64
+  dim_mults: [1, 2, 4]      # [1, 2, 4, 8] does not work for 60x60 input with current setup
+  #input_channels: null      # automatically inferred from the dataset/datamodule
+  #output_channels: null     # automatically inferred from the dataset/datamodule
+  resnet_block_groups: 8  # True
+  double_conv_layer: True   # Whether to use double convNext layer or not
+  learned_variance: False
+  learned_sinusoidal_cond: False
+  learned_sinusoidal_dim: 16
+  input_dropout: 0.0
+  block_dropout: 0.0  # for part 2 of block
+  block_dropout1: 0.0 # for part 1 of block
+  attn_dropout: 0.0
+
+  with_time_emb: False
+
+  #
+  keep_spatial_dims: False   # If True, no down/up-sampling is performed
+  outer_sample_mode: null  # "bilinear" or "nearest" or None (=no upsampling)
+  upsample_dims: null     # or a tuple of ints
+  #
+  init_kernel_size: 7
+  init_padding: 3
+  init_stride: 1
+

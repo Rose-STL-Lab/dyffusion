@@ -1,0 +1,19 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=navierstokes_ddpm
+
+defaults:
+  - navier_stokes.yaml
+  - override /module: forecasting_multi_horizon_at_once.yaml
+  - override /diffusion: denoising.yaml
+  - _self_
+
+name: "NS-MH${datamodule.horizon}-DDPM-${diffusion.timesteps}T"
+
+model:
+  with_time_emb: True
+
+logger:
+  wandb:
+    tags: ["pb", "navier-stokes",  'DDPM']

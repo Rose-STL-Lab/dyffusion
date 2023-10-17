@@ -1,0 +1,19 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=oisst_pacific_multi_horizon
+
+defaults:
+  - oisst_pacific.yaml
+  - override /module: forecasting_multi_horizon_at_once.yaml
+  - override /diffusion: ddpm_mcvd.yaml
+  - _self_
+
+name: "OISSTv2-MH${datamodule.horizon}-MCVD-${diffusion.timesteps}T"
+
+model:
+  with_time_emb: True
+
+logger:
+  wandb:
+    tags: ["oisstv2", "pacific_subset",  "simultaneous", "diffusion", "MCVD"]

@@ -1,0 +1,20 @@
+# https://wandb.ai
+
+wandb:
+#  _target_: pytorch_lightning.loggers.wandb.WandbLogger
+  _target_: src.utilities.wandb_callbacks.MyWandbLogger
+  entity: null  # optionally set to name of your wandb team or entity
+  name: null   # will be automatically set to the name of the run (plus timestamp, etc.)
+  tags: []
+  notes: "..."
+  project: "DYffusion"
+  group: ""
+  resume: "allow"
+  reinit: True
+  mode: online              # disabled  # disabled for no wandb logging
+  save_dir: ${work_dir}/
+  offline: False           # set True to store all logs only locally
+  id: null                 # pass correct id to resume experiment!
+  log_model: False         # True or 'all'
+  prefix: ""
+#  job_type: "train"

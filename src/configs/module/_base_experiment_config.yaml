@@ -1,0 +1,21 @@
+# @package _global_
+
+defaults:
+  - /optimizer@module.optimizer: adamw.yaml
+  - /scheduler@module.scheduler: null # no scheduler
+  - _self_
+
+module:
+  # which logged value/metric to monitor (used for checkpointing/early stopping/LR scheduling)
+  monitor: null     # null means that the metric to use is inferred from the experiment_types ``default_monitor_metric``
+  mode: "min"       # "min" means lower metric value is better, can also be "max"
+  use_ema: False    # whether to use exponential moving average of model weights for evaluation
+  ema_decay: 0.9999               # decay rate for exponential moving average (only used if ``use_ema=True``)
+  enable_inference_dropout: null  # null or bool
+  num_predictions: 20             # number of predictions/samples/ensemble members to make for each batch element
+  prediction_inputs_noise: 0.0    # perturbation noise to add to the inputs before predicting
+  logging_infix: ""               # infix to add to the metric keys when logging to wandb
+  verbose: ${verbose}
+  seed: ${seed}
+
+#################################################################################################

@@ -1,0 +1,16 @@
+defaults:
+  - _self_
+  - _base_data_config.yaml   # general, dataset-independent, parameters
+
+_target_: src.datamodules.oisstv2.OISSTv2DataModule
+# data_dir: "C:/Users/XYZ/data/oisstv2"
+boxes: [88]                    # "all" for all boxes (in data dir), or a list of boxes, e.g. [1, 53, 189]
+validation_boxes: ${datamodule.boxes}                 # "all", or a list of boxes, e.g. [1, 53, 189]
+train_start_date: null
+multi_horizon: False            # use multiple horizons (e.g. 1,2,3,4,5,6,7,8,9,10)
+save_and_load_as_numpy: False    # save and load data as numpy arrays
+prediction_horizon: ${datamodule.horizon}        # prediction horizon (in days), if null, use the default horizon
+
+# Do not change:
+box_size: 60                    # size of the box in degrees (lat, lon)
+pixelwise_normalization: True   # normalize each pixel individually (or based on box-mean mean and std)

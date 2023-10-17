@@ -1,0 +1,17 @@
+# @package _global_
+
+# experiment mode sets name of the logging folder to the experiment name
+# can also be used to name the run in the logger
+# example usage:
+# `python run.py mode=exp name=some_name`
+
+experiment_mode: True
+
+name: ???
+
+hydra:
+  run:
+    dir: ${log_dir}/experiments/${name}/runs/${now:%Y-%m-%d}/${now:%Hh-%Mmin-%Ss}
+  sweep:
+    dir: ${log_dir}/experiments/${name}/multiruns/${now:%Y-%m-%d}/${now:%Hh-%Mmin-%Ss}
+    subdir: ${hydra.job.num}

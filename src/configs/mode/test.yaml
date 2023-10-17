@@ -1,0 +1,18 @@
+# @package _global_
+
+# example usage:
+# `python run.py mode=test logger.wandb.id=SOME_WANDB_ID`
+
+test_mode: True
+
+module:
+  num_predictions: 50
+
+logger:
+  wandb:
+    id: ???    # id of the run to be continued. Needs to be set manually
+
+
+# Checkpoint path to be loaded from wandb cloud (see files tab of run page) or locally (use absolute path)
+ckpt_path: "best-val_20ens_mems_avg_crps.ckpt"
+# ckpt_path: "best.ckpt"

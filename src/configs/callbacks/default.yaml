@@ -1,0 +1,26 @@
+# ----------- A set of helpful default callbacks -------------
+# NOTE: `monitor` and `mode` are defined in configs/module/*.yaml
+
+
+# The following will save the k best model weights to <ckpt_dir>/<filename_k>.pt
+# 'best' is defined by the value of the `monitor` metric (usually some validation metric).
+model_checkpoint:
+  _target_: pytorch_lightning.callbacks.ModelCheckpoint
+  monitor: ${module.monitor}   # name of the logged metric which determines when model is improving
+  mode: ${module.mode}         # "max" means higher metric value is better, can be also "min"
+  save_top_k: 1               # save k best models (determined by above metric)
+  save_last: True             # additionally always save model from last epoch
+  verbose: ${verbose}
+  dirpath: ${ckpt_dir}
+  filename: "${name}_${name_suffix}_epoch{epoch:03d}_seed${seed}"
+  auto_insert_metric_name: False
+  # every_n_epochs: 10
+
+# Early stopping based on the `monitor` metric (usually validation MSE).
+early_stopping:
+  _target_: pytorch_lightning.callbacks.EarlyStopping
+  monitor: ${module.monitor}  # name of the logged metric which determines when model is improving
+  mode: ${module.mode}        # "min" means higher metric value is better, can be also "max"
+  patience: 20               # how many validation epochs of not improving until training stops
+  min_delta: 0               # minimum change in the monitored metric needed to qualify as an improvement
+  verbose: True

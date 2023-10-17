@@ -1,0 +1,39 @@
+# @package _global_
+
+defaults:
+  - example.yaml
+  - override /datamodule: oisst.yaml
+  - _self_
+
+name: "OISSTv2PacificSubset"
+
+datamodule:
+  batch_size: 64
+  eval_batch_size: ${datamodule.batch_size}
+  horizon: 7
+  prediction_horizon: 7
+  boxes: [84, 85, 86, 87, 88, 89, 108, 109, 110, 111, 112]
+
+model:
+  block_dropout: 0.3
+  block_dropout1: 0.0
+  attn_dropout: 0.1
+
+module:
+  optimizer:
+    lr: 1e-4
+    weight_decay: 1e-5
+
+trainer:
+  max_epochs: 50
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 4
+
+early_stopping:
+  patience: 10
+
+seed: 8
+logger:
+  wandb:
+#    project: "DYffusion-sst"
+    tags: ["oisstv2", "pacific_subset"]

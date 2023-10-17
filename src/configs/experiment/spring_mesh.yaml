@@ -1,0 +1,39 @@
+# @package _global_
+
+defaults:
+  - example.yaml
+  - override /datamodule: physical_systems.yaml
+  - override /model: cnn_simple.yaml
+  - _self_
+
+name: "SpringMesh"
+
+datamodule:
+  physical_system: 'spring-mesh'
+  batch_size: 64
+  eval_batch_size: 512
+  horizon: 134
+  prediction_horizon: 804
+  window: 1
+
+model:
+  dropout: 0.05
+
+module:
+  optimizer:
+    lr: 4e-4
+    weight_decay: 1e-4
+
+trainer:
+  max_epochs: 300
+  gradient_clip_val: 1.0
+  deterministic: True
+  accumulate_grad_batches: 1
+
+callbacks:
+  early_stopping: null
+
+logger:
+  wandb:
+    project: "DYffusion-spring-mesh"
+    tags: ["spring-mesh"]

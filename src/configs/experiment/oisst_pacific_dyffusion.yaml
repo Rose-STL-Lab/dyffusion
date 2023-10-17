@@ -1,0 +1,22 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=oisst_pacific_dyffusion
+
+defaults:
+  - oisst_pacific.yaml
+  - override /diffusion: dyffusion.yaml
+  - override /module: forecasting_multi_horizon_dyffusion.yaml
+  - _self_
+
+name: "OISSTv2-MH${datamodule.horizon}-DYffusion"
+
+diffusion:
+  interpolator_run_id: ???    # please update
+  additional_interpolation_steps: 25  # k
+  refine_intermediate_predictions: False
+  forward_conditioning: "data+noise"
+
+logger:
+  wandb:
+    tags: ["oisstv2", "pacific_subset", "dyffusion", "diffusion"]

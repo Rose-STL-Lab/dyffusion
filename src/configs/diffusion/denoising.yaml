@@ -1,0 +1,9 @@
+defaults:
+  - _self_
+  - _base.yaml
+
+_target_: src.diffusion.denoising_diffusion.GaussianDiffusion
+
+beta_schedule: "cosine"
+objective: "pred_noise"   # pred_x0, pred_noise
+hardcode_betaN: False

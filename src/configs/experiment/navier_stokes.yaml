@@ -1,0 +1,38 @@
+# @package _global_
+
+defaults:
+  - example.yaml
+  - override /datamodule: physical_systems.yaml
+  - override /model: unet_simple_navier_stokes.yaml
+  - _self_
+
+name: "NavierStokes"
+
+datamodule:
+  batch_size: 32
+  eval_batch_size: ${datamodule.batch_size}
+  horizon: 16
+  prediction_horizon: 64
+  window: 1
+
+model:
+  dropout: 0.15
+
+module:
+  optimizer:
+    lr: 3e-4
+    weight_decay: 1e-4
+
+trainer:
+  max_epochs: 200
+  gradient_clip_val: 1.0
+  deterministic: False      # upsampling is used but not deterministic
+  accumulate_grad_batches: 2
+
+callbacks:
+  early_stopping: null
+
+logger:
+  wandb:
+    project: "DYffusion-navier-stokes"
+    tags: ["navier-stokes"]

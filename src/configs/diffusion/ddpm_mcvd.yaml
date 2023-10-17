@@ -1,0 +1,16 @@
+defaults:
+  - _self_
+  - _base.yaml
+
+_target_: src.diffusion.mcvd.UNetMore_DDPM
+
+beta_schedule: "linear"
+version: 'DDPM'
+sigma_begin: 0.02
+sigma_end:  0.0001
+gamma: False
+noise_in_cond: False
+
+step_lr: 0.0
+n_steps_each: 0
+sampling_denoise: True

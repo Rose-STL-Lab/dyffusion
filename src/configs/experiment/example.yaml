@@ -1,0 +1,33 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=example
+
+defaults:
+  - override /mode: exp.yaml
+  #- override /trainer: default.yaml
+  #- override /model: <YOUR MODEL>.yaml
+  - override /callbacks: wandb.yaml
+  - override /logger: wandb.yaml
+  - _self_
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+# name of the run determines folder name in logs
+# can also be accessed by loggers
+name: "example"
+
+#v seed: 7
+
+trainer:
+  min_epochs: 1
+  max_epochs: 50
+  # gradient_clip_val: 5
+
+# datamodule:
+#  batch_size: 16
+
+logger:
+  wandb:
+    tags: ["example-experiment"]

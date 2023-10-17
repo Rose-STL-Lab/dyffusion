@@ -1,0 +1,24 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=oisst_pacific_time_conditioned
+
+defaults:
+  - oisst_pacific.yaml
+  - override /module: forecasting_multi_horizon_time_conditioned.yaml
+  - _self_
+
+name: "OISSTv2-MH${datamodule.horizon}-TC"
+module:
+  enable_inference_dropout: True
+  optimizer:
+    lr: 3e-4
+
+model:
+  block_dropout: 0.6
+  block_dropout1: 0.3
+  attn_dropout: 0.6
+
+logger:
+  wandb:
+    tags: ["oisstv2", "pacific_subset"]

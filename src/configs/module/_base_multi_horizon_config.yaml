@@ -1,0 +1,17 @@
+# @package _global_
+
+defaults:
+  - /module@_here_: _base_experiment_config.yaml   # base experiment config with defaults params
+  - _self_
+
+module:
+  autoregressive_steps: 0
+  prediction_timesteps: null
+  monitor: "val/${module.num_predictions}ens_mems/avg/crps"
+
+datamodule:
+#  horizon: 7   # needs to be > 1
+  multi_horizon: True
+
+model:
+  with_time_emb: True

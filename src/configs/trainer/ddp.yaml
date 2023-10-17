@@ -1,0 +1,6 @@
+defaults:
+  - default.yaml
+
+devices: "auto"  # before pl 2.0, this was gpus: -1
+strategy: "ddp_find_unused_parameters_false"
+accelerator: "gpu"

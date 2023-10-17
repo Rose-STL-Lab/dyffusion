@@ -1,0 +1,19 @@
+# ----------- This will use all default callbacks, plus Wandb specific ones -------------
+# NOTE: requires wandb package
+
+defaults:
+  - default.yaml
+
+# Watch the model gradients on Wandb (as histograms per epoch)
+watch_model:
+  _target_: src.utilities.wandb_callbacks.WatchModel
+  log: "all"
+  log_freq: 500
+
+# Make wandb log in run.summary the best achieved monitored val_metric as opposed to the last
+summarize_best_val_metric:
+  _target_: src.utilities.wandb_callbacks.SummarizeBestValMetric
+
+# This will log the LR as function of the #steps/epochs
+learning_rate_logging:
+ _target_: pytorch_lightning.callbacks.LearningRateMonitor

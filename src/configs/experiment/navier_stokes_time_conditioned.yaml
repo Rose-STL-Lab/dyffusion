@@ -1,0 +1,16 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=navierstokes_time_conditioned
+
+defaults:
+  - navier_stokes.yaml
+  - override /module: forecasting_multi_horizon_time_conditioned.yaml
+  - _self_
+
+name: "NavierStokes-MH${datamodule.horizon}-TC"
+module:
+  enable_inference_dropout: True
+
+model:
+  dropout: 0.2

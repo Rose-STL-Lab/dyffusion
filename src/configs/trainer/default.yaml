@@ -1,0 +1,18 @@
+_target_: pytorch_lightning.Trainer
+
+accelerator: "gpu"
+devices: "auto"    # -1 for all available GPUs. If you want to use CPU, set to 0.
+strategy: "auto"
+
+min_epochs: 1
+max_epochs: 50
+
+gradient_clip_val: 1.0        # Gradient clipping at 1.0 of the norm
+accumulate_grad_batches: 1    # Accumulate gradients on k batches
+
+# resume_from_checkpoint: null
+precision: 32                 # 32 or 16
+num_sanity_val_steps: 1       # number of validation steps to execute at the beginning of the training
+val_check_interval: 1.0       # how often to check the validation set (float = percent, int = num_batches)
+
+deterministic: True           # whether to enable deterministic training

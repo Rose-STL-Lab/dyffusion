@@ -1,0 +1,10 @@
+defaults:
+  - _self_
+  - _base_data_config.yaml   # general, dataset-independent, parameters
+
+_target_: src.datamodules.physical_systems_benchmark.PhysicalSystemsBenchmarkDataModule
+# data_dir: "C:/Users/XYZ/data/physical-nn-benchmark"
+physical_system: "navier-stokes"
+multi_horizon: False            # use multiple horizons (e.g. 1,2,3,4,5,6,7,8,9,10)
+prediction_horizon: null        # prediction horizon (in days), if null, use the default horizon
+num_trajectories: null   # number of trajectories to use (null = all)

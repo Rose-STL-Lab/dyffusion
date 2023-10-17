@@ -1,0 +1,7 @@
+# ----------- This will use all default callbacks, plus Wandb and Rich specific ones -------------
+# NOTE: requires wandb and rich package
+
+defaults:
+  - wandb.yaml
+  - rich.yaml
+

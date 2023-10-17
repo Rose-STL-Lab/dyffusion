@@ -1,0 +1,15 @@
+# @package _global_
+
+# to execute this module run:
+# python run.py module=forecasting_multi_horizon_at_once
+
+defaults:
+  - _base_multi_horizon_config.yaml
+  - _self_
+
+module:
+  _target_: src.experiment_types.forecasting_multi_horizon.SimultaneousMultiHorizonForecasting
+  timestep_loss_weights: null  # equal weights for all timesteps
+
+model:
+  with_time_emb: False   # no time embedding for this experiment, since we predict all timesteps at once

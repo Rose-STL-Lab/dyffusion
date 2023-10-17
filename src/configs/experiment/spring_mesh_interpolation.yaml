@@ -1,0 +1,21 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=spring_mesh_interpolation
+
+defaults:
+  - spring_mesh.yaml
+  - override /module: interpolation.yaml
+  - _self_
+
+name: "SpringMesh-Interpolation${datamodule.horizon}h"
+
+module:
+  enable_inference_dropout: True
+
+trainer:
+  max_epochs: 400
+
+logger:
+  wandb:
+    tags: ["spring-mesh", "interpolation"]

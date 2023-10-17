@@ -1,0 +1,15 @@
+# @package _global_
+
+#defaults:
+#  - /optimizer: adam.yaml
+#  - /scheduler: null # no scheduler
+#  - _self_
+
+# loss_function: "mse" # loss function to use for training
+model:
+  name: ""
+  verbose: ${verbose}
+  loss_function: "mse"   # loss function to use for training
+  num_conditional_channels: 0  # To be used for, e.g., diffusion models
+# autoregressive_steps: 0
+#################################################################################################

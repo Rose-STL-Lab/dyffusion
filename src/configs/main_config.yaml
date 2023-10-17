@@ -1,0 +1,70 @@
+# @package _global_
+
+# specify here default training configuration
+# Each value yaml file will be searched in the key config folder, e.g. configs/model/unet_resnet.yaml (the yaml ending is optional)
+# NOTE: Configs can only override stuff that appears *before it* in the defaults list.
+defaults:
+  - _self_
+  - trainer: default.yaml                # Use trainer=ddp to run on multiple GPUs
+  - model: unet_simple_navier_stokes.yaml
+  - diffusion: null
+  - datamodule: physical_systems.yaml    #  Physical systems benchmark datasets
+  - module: forecasting_multi_horizon_at_once.yaml   # simple multi-step forecasting module by default
+
+  - callbacks: wandb.yaml  # or use default.yaml
+  - logger: wandb.yaml     # set logger here or use command line (e.g. `python train.py logger=wandb`)
+
+  # modes are special collections of config options for different purposes, e.g. debugging
+  - mode: default.yaml
+
+  # experiment_types configs allow for version control of specific configurations/hyperparameters
+  - experiment: null
+
+  # optional local config for machine/user specific settings (e.g. data dir, fewer epochs, etc.)
+  # It will override any keys in the above configs!!!
+  - optional local: default.yaml
+
+  # default optimizer is AdamW (better than Adam with weight decay)
+  # - override optimizer@module.optimizer: adam.yaml
+
+
+# Note: hydra.runtime.cwd points to the original working dir.
+# ${hydra:runtime.cwd} is the path to original working directory
+# hydra hijacks working directory by changing it to the new log directory so it's useful to have this path as a special variable
+# https://hydra.cc/docs/next/tutorials/basic/running_your_app/working_directory
+work_dir: ./results       # ${hydra:runtime.cwd}  # oc.env allows to get environment variable
+
+# path to checkpoints
+ckpt_dir: ${work_dir}/checkpoints/
+
+# path for logging
+log_dir: ${work_dir}/logs/
+
+# pretty print config at the start of the run using Rich library (requires Rich to be installed!)
+print_config: True
+
+# disable python warnings if they annoy you
+ignore_warnings: True
+
+# evaluate on test set, using best model weights achieved during training
+# lightning chooses best weights based on metric specified in checkpoint callback
+test_after_training: False
+# Checkpoint path to be loaded from wandb cloud (see files tab of run page) or locally (use absolute path)
+ckpt_path: null
+
+# Upload config file to wandb cloud?
+save_config_to_wandb: True
+
+# Verbose?
+verbose: True
+
+# Global seed for random number generators in pytorch, numpy and python.random for reproducibility
+# Note: It does *not* apply to the data split, which is done based on the random seed specified in the datamodule
+seed: 11
+
+torch_matmul_precision: "high"   # choose from "highest", "high", "medium" for speed/precision tradeoff
+
+# name of the run - good to use along with experiment_types mode
+name: null
+name_suffix: null  # will be appended to the name
+suffix: null       # will be appended after all hyperparameters IDs and other suffixes

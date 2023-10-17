@@ -1,0 +1,15 @@
+# @package _global_
+
+# debug mode sets name of the logging folder to 'logs/debug/...'
+# enables trainer debug options
+# also sets level od command line logger to DEBUG
+# example usage:
+# `python run.py mode=debug_oisst`
+
+defaults:
+  - debug.yaml
+  - override /datamodule: oisst.yaml
+  - _self_
+
+datamodule:
+  boxes: [88]

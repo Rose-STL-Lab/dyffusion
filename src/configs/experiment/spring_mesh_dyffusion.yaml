@@ -1,0 +1,20 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=spring_mesh_dyffusion
+
+defaults:
+  - spring_mesh.yaml
+  - override /module: forecasting_multi_horizon_dyffusion.yaml
+  - override /diffusion: dyffusion.yaml
+  - _self_
+
+name: "SpringMesh-MH${datamodule.horizon}-DYffusion"
+diffusion:
+  interpolator_run_id: ???   # Please fill in the wandb run id of the trained interpolator
+  refine_intermediate_predictions: True
+  forward_conditioning: "data"
+
+logger:
+  wandb:
+    tags: ["pb", "spring-mesh",  'dyffusion']

@@ -1,0 +1,8 @@
+# to execute this module run:
+# python run.py module=forecasting_multi_horizon_dyffusion
+
+defaults:
+  - _base_multi_horizon_config.yaml
+  - _self_
+
+_target_: src.experiment_types.forecasting_multi_horizon.MultiHorizonForecastingDYffusion

@@ -1,0 +1,17 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=navier_stokes_interpolation
+
+defaults:
+  - navier_stokes.yaml
+  - override /module: interpolation.yaml
+  - _self_
+
+name: "NavierStokes-Interpolation${datamodule.horizon}h"
+module:
+  enable_inference_dropout: True
+
+logger:
+  wandb:
+    tags: ["navier-stokes", "interpolation"]
