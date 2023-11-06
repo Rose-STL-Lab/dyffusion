@@ -39,7 +39,7 @@ def run_model(config: DictConfig) -> float:
     # If not resuming training, check if run already exists (with same hyperparameters and seed)
     config = cfg_utils.extras(config, if_wandb_run_already_exists="resume")
 
-    wandb_id = config.logger.wandb.get("id")
+    wandb_id = config.logger.wandb.get("id") if hasattr(config.logger, "wandb") else None
     uses_wandb = wandb_id is not None
     if uses_wandb and config.wandb_status == "resume":
         # Reload model checkpoint if needed to resume training

@@ -23,7 +23,7 @@ If you use this code, please consider citing our work. Copy the bibtex from the 
 Salva Rühling Cachay, Bo Zhao, Hailey Joren, and Rose Yu,\
 *Advances in Neural Information Processing Systems (NeurIPS)*, 2023
 
-## Environment Setup
+## | Environment Setup
 
 We recommend installing ``dyffusion`` in a virtual environment from PyPi or Conda. 
 For more details about installing [PyTorch](https://pytorch.org/get-started/locally/), please refer to their official documentation.
@@ -31,7 +31,7 @@ For some compute setups you may want to install pytorch first for proper GPU sup
 
     python3 -m pip install .[train]
 
-## Downloading Data
+## | Downloading Data
 
 **Navier-Stokes and spring mesh:**
 Follow the instructions given by the [original dataset paper](https://github.com/karlotness/nn-benchmark).
@@ -54,7 +54,7 @@ If you want to use a different directory, you need to change the
 permanently edit the ``data_dir`` variable in the [src/configs/datamodule/_base_data_config.yaml](src/configs/datamodule/_base_data_config.yaml) file.
 </details>
 
-## Running experiments
+## | Running experiments
 
 Please see the [src/README.md](src/README.md) file for detailed instructions on how to run experiments, navigate the code and running with different configurations.
 
@@ -125,7 +125,7 @@ To debug the physical systems experiments, feel free to use fewer training traje
 regional boxes (the default is 11 boxes) with ``python run.py 'datamodule.boxes=[88]'``.
 Generally, you can also try mixed precision training with ``python run.py trainer.precision=16``.
 
-## Citation
+## | Citation
 
     @inproceedings{cachay2023dyffusion,
       title={{DYffusion:} A Dynamics-informed Diffusion Model for Spatiotemporal Forecasting},
