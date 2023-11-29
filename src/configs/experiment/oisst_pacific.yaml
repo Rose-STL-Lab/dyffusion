@@ -9,7 +9,7 @@ name: "OISSTv2PacificSubset"
 
 datamodule:
   batch_size: 64
-  eval_batch_size: ${datamodule.batch_size}
+  eval_batch_size: 6   # effectively eval_batch_size *= number of predictions ($module.num_predictions; default=20)
   horizon: 7
   prediction_horizon: 7
   boxes: [84, 85, 86, 87, 88, 89, 108, 109, 110, 111, 112]

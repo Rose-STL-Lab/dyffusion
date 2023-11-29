@@ -11,7 +11,7 @@ name: "SpringMesh"
 datamodule:
   physical_system: 'spring-mesh'
   batch_size: 64
-  eval_batch_size: 512
+  eval_batch_size: 16  # effectively eval_batch_size *= number of predictions ($module.num_predictions; default=20)
   horizon: 134
   prediction_horizon: 804
   window: 1

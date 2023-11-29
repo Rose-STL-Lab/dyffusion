@@ -1,4 +1,3 @@
-import math
 import os
 import time
 import warnings
@@ -464,13 +463,12 @@ def check_config_values(config: DictConfig):
             config.save_config_to_wandb = False
 
         if config.module.get("num_predictions", 1) > 1:
-            # adapt the evaluation batch size to the number of predictions
             bs, ebs = config.datamodule.batch_size, config.datamodule.eval_batch_size
             if ebs >= bs:
-                # reduce the eval batch size to account for the number of predictions
-                config.datamodule.eval_batch_size = max(1, int(bs // math.sqrt(config.module.num_predictions)))
+                effective_ebs = ebs * config.module.num_predictions
                 log.info(
-                    f"Reducing eval batch size from {ebs} to {config.datamodule.eval_batch_size} to match the number of predictions."
+                    f"Note that the effective evaluation batch size will be multiplied by the number of "
+                    f"predictions={config.module.num_predictions} for a total of {effective_ebs}!"
                 )
 
 
