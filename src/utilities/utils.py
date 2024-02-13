@@ -606,7 +606,7 @@ def update_dict_with_other(d1: Dict[str, Any], other: Dict[str, Any]):  # _and_r
     """
     diff = []
     for k, v in other.items():
-        if isinstance(v, dict):
+        if isinstance(v, dict) and d1.get(k) is not None:
             d1[k], diff_sub = update_dict_with_other(d1.get(k, {}), v)
             diff += [f"{k}.{x}" for x in diff_sub]
         else:
