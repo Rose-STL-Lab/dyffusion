@@ -28,6 +28,7 @@ class BaseDYffusion(BaseDiffusion):
         refine_intermediate_predictions: bool = False,
         prediction_timesteps: Optional[Sequence[float]] = None,
         enable_interpolator_dropout: Union[bool, str] = True,
+        use_cold_sampling_for_last_step: bool = False,
         log_every_t: Union[str, int] = None,
         *args,
         **kwargs,
@@ -378,10 +379,13 @@ class BaseDYffusion(BaseDiffusion):
                 x_interpolated_s_next = x0_hat  # for the last step, we use the final x0_hat prediction
 
             if self.hparams.sampling_type in ["cold"]:
-                # D(x_s, s)
-                x_interpolated_s = self.q_sample(**q_sample_kwargs, t=step_s, **sc_kw) if s > 0 else x_s
-                # for s = 0, we have x_s_degraded = x_s, so we just directly return x_s_degraded_next
-                x_s = x_s - x_interpolated_s + x_interpolated_s_next
+                if is_last_step and not self.hparams.use_cold_sampling_for_last_step:
+                    x_s = x0_hat
+                else:
+                    # D(x_s, s)
+                    x_interpolated_s = self.q_sample(**q_sample_kwargs, t=step_s, **sc_kw) if s > 0 else x_s
+                    # for s = 0, we have x_s_degraded = x_s, so we just directly return x_s_degraded_next
+                    x_s = x_s - x_interpolated_s + x_interpolated_s_next
 
             elif self.hparams.sampling_type == "naive":
                 x_s = x_interpolated_s_next

@@ -50,5 +50,8 @@ diffusion:
   #  python run.py mode=test diffusion.refine_intermediate_predictions=True logger.wandb.id=???
   refine_intermediate_predictions: False
 
+  # Set to True to use the direct forecaster's prediction of x_{t+h} rather than a cold-sampled one (when sampling_type='cold')
+  use_cold_sampling_for_last_step: False
+
   timesteps: ${datamodule.horizon}  # Do not change, it is automatically inferred by DYffusion
   log_every_t: null

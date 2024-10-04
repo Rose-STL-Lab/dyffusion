@@ -16,9 +16,6 @@ datamodule:
   prediction_horizon: 804
   window: 1
 
-model:
-  dropout: 0.05
-
 module:
   optimizer:
     lr: 4e-4

@@ -10,11 +10,14 @@ defaults:
 
 name: "SpringMesh-Interpolation${datamodule.horizon}h"
 
+model:
+  dropout: 0.05
+
 module:
   enable_inference_dropout: True
 
-trainer:
-  max_epochs: 400
+#trainer:
+#  max_epochs: 400
 
 logger:
   wandb:

@@ -9,5 +9,9 @@ defaults:
   - _self_
 
 name: "SpringMesh-MH${datamodule.horizon}-TC"
+
+model:
+  dropout: 0.05
+
 module:
   enable_inference_dropout: True
