@@ -10,7 +10,7 @@ modified_only_fixup:
 	@if test -n "$(modified_py_files)"; then \
 		echo "Checking/fixing $(modified_py_files)"; \
 		black $(modified_py_files); \
-		ruff $(modified_py_files); \
+		ruff check $(modified_py_files); \
 	else \
 		echo "No library .py files were modified"; \
 	fi
@@ -34,7 +34,7 @@ autogenerate_code: deps_table_update
 
 quality:
 	python3 -m black --check $(check_dirs)
-	python3 -m ruff $(check_dirs)
+	python3 -m ruff check $(check_dirs)
 # 	doc-builder style src docs/source --max_len 119 --check_only --path_to_docs docs/source
 
 
@@ -42,7 +42,7 @@ quality:
 
 style:
 	python3 -m black $(check_dirs)
-	python3 -m ruff $(check_dirs) --fix
+	python3 -m ruff check $(check_dirs) --fix
 	${MAKE} autogenerate_code
 
 # Super fast fix and check target that only works on relevant modified files since the branch was made
