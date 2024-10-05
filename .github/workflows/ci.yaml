@@ -25,7 +25,8 @@ jobs:
       - name: Check quality
         run: |
           black --check tests src scripts utils
-          ruff tests src scripts utils
+          ruff check tests src scripts utils
+#          ruff check tests src scripts utils --fix
 #          doc-builder style src docs/source --max_len 119 --check_only --path_to_docs docs/source
 
   check_repository_consistency:
