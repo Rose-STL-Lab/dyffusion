@@ -29,7 +29,7 @@ We recommend installing ``dyffusion`` in a virtual environment from PyPi or Cond
 For more details about installing [PyTorch](https://pytorch.org/get-started/locally/), please refer to their official documentation.
 For some compute setups you may want to install pytorch first for proper GPU support.
 
-    python3 -m pip install .[train]
+    python3 -m pip install ".[train]"
 
 ## | Downloading Data
 
